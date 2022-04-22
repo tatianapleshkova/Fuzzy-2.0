@@ -561,8 +561,9 @@ int main (int argc, char* argv[]) {
     //запись данных в массив
     string line, csvItem;
     string read_file;
-    cout << "Please entry file name and his extension (for example, iris.txt) - ";
-    cin >> read_file;
+    read_file = "1Australian.txt";
+    //cout << "Please entry file name and his extension (for example, iris.txt) - ";
+    //cin >> read_file;
     /*if (argc == 1)
     {
         read_file = file_1;
@@ -856,16 +857,16 @@ int main (int argc, char* argv[]) {
     //перебор для вывода ВЫВЕСТИ В СВЕТ
 //  for (int initialize = 1; initialize < 3; initialize++)
     {
-        which_initial = 2;
+        which_initial = 0;//базовая инициализация
         //for (int selection_int = 0; selection_int < 2; selection_int++)
         {
-            which_selection = 1;
+            which_selection = 1;//турнирная
             //for (int crossover_int = 0; crossover_int < 2; crossover_int++)
             {
-                which_crossover = 0;
+                which_crossover = 0;//базования
                 //for (int mutation_int = 0; mutation_int < 3; mutation_int++)
                 {
-                    which_mutation = 1;
+                    which_mutation = 1;//средняя
 
                     string whatfileoutput;
                     whatfileoutput = to_string(which_initial) + to_string(which_selection) + to_string(which_crossover) + to_string(which_mutation) + ".txt";
@@ -988,6 +989,9 @@ int main (int argc, char* argv[]) {
         int** correct_classification_num = new int*[pop_size];
         double* fitness = new double[pop_size];
         double* fitness_small = new double[pop_size];
+        double* f_score_fit = new double[pop_size];
+        double* accuracy_fit = new double[pop_size];
+        double* num_rules_fit = new double[pop_size];
         double* fitness_rang = new double[pop_size];
         double* fitness_rang_prop = new double[pop_size];
 
@@ -2136,6 +2140,9 @@ int main (int argc, char* argv[]) {
             //f3 количество не донт care параметров в правиле суммарно по всем правилам 
             //реализовать NSGA-II
             fitness_small[y] = error_percentage_train;
+            f_score_fit[y] = (1 - Fscore);
+            accuracy_fit[y] = accuracy;
+            num_rules_fit[y] = flag_active;
             fitness[y] = w1*(1 - Fscore) + w2*flag_active + w3*flag_not_dontcare;//оптимизировать
             
             //cout << "Train fitness " << fitness[y] << endl;
